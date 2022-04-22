@@ -1,5 +1,7 @@
 var inquirer = require("inquirer");
 const fs = require('fs')
+
+//prompts user on terminal these questions for the README
 inquirer
   .prompt([
       { name: "title", message: "What is your project title?" },
@@ -23,6 +25,7 @@ inquirer
 
   ])
 
+//license badge and URL will appear on README depending on which license is chosen.
   .then((answers) => {
       let license = '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
       let licenseURL = 'https://opensource.org/licenses/Apache-2.0'
@@ -33,7 +36,7 @@ inquirer
           license='[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
           licenseURL='https://opensource.org/licenses/MIT'
       } else if (answers.license=="none"){
-          license='[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'
+          license=''
           licenseURL='http://unlicense.org/'
       } else if (answers.license=="BSD-2 Clause"){
           license='[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)'
@@ -67,6 +70,12 @@ inquirer
           licenseURL='http://unlicense.org/'
       }
 
+      let licenseText = `Read more about ${answers.license} here: [${answers.license}](${licenseURL})`
+      if (answers.license == 'none') {
+          licenseText = 'No license'
+      }
+
+      //use template literal to define the markdown and inject the user input into its respective sections
       const md= `
 # ${answers.title}
 ## Description
@@ -87,7 +96,7 @@ ${answers.installation}
 ## Usage
 ${answers.usage}
 ## License
-Read more about ${answers.license} here: [${answers.license}](${licenseURL})
+${licenseText}
 ## How to Contribute
 ${answers.contributing}
 ## Tests
@@ -97,6 +106,7 @@ ${answers.tests}
 
 [${answers.email}](mailto:${answers.email})
 `
+//write markdown to file
       fs.writeFileSync('README.md', md)
   })
   .catch((error) => {
