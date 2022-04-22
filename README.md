@@ -1,4 +1,3 @@
-
 # README Generator
 ## Description
 An application that can be run in the terminal to conveniently generate a personalized and professional README.md
