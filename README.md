@@ -17,6 +17,8 @@ Make sure that node and npm is installed. Clone the repo into the terminal. You 
 ## Usage
 Simply type in, 'node index.js' into the terminal and follow the prompts.
 
+![usageREADME](https://user-images.githubusercontent.com/98536530/164938706-c7066b19-c6e3-4587-aa50-3ef72f880099.gif)
+
 Link to video of how application works here: https://drive.google.com/file/d/1rzWmEpaZ5fdUDzsPDFVSrKhVATjkHY_Y/view?usp=sharing
 ## License
 Read more about MIT License here: [MIT License](https://opensource.org/licenses/MIT)
